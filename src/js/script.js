@@ -1,5 +1,6 @@
 const formLogin = document.getElementById("form-login");
 const formRegister = document.getElementById("form-register");
+const logoff = document.getElementById("logoff");
 
 if(formRegister !== null) {
     formRegister.addEventListener("submit", async (e) => {
@@ -24,13 +25,30 @@ if(formLogin !== null) {
 
         const dadosForm = new FormData(formLogin);
 
-        const dados = await fetch("processes/login-process.php", {
+        const data = await fetch("processes/login-process.php", {
             method: "POST",
             body: dadosForm,
         });
 
-        const response = await dados.json();
+        const response = await data.json();
         window.location.href = "http://localhost:8080/shop_page/";
     });
+}
+
+if(logoff !== null) {
+    logoff.addEventListener("click", async(e) => {
+        e.preventDefault();
+
+        const dadosLogoff = new FormData();
+
+        dadosLogoff.append("type", "logoff");
+
+        const data = await fetch("processes/login-process.php", {
+            method: "POST",
+            body: dadosLogoff,
+        })
+
+        window.location.href = "http://localhost:8080/shop_page/";
+    })
 }
 

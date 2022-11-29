@@ -2,7 +2,7 @@
 
 <div id="main-container">
     <div id="content-login">
-        <form action="<?= $BASE_URL ?>processes/login-process.php" method="post" id="form-login">
+        <form action="#" method="post" id="form-login">
             <div class="email-login">
                 <input type="hidden" name="type" value="login">
                 <label for="email" class="label-login">Insira seu email:</label>

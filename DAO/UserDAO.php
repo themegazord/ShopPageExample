@@ -98,7 +98,7 @@ class UserDAO implements UserInterface {
 
     public function destroyToken()
     {
-        // TODO: Implement destroyToken() method.
+        $_SESSION["token"] = "";
     }
 
     public function findByToken($token)

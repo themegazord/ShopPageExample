@@ -48,9 +48,18 @@ $userData = $userDao->verifyToken(false);
 
         <div id="navbar-loginarea">
             <?php if($userData): ?>
-                <div id="login"><i class="fa-solid fa-circle-user"></i> <span class="login"><?= $userData->getName() ?></span></div>
+                <div id="login">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <ul class="ul-user">
+                        <li><span class="login"><?= $userData->getName() ?></span>
+                            <ul class="ul-user-menu">
+                                <li id="logoff">Desconectar <i class="fa-solid fa-xmark"></i></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             <?php else: ?>
-                <div id="login"><a href="<?= $BASE_URL ?>login.php"> <i class="fa-solid fa-circle-user"></i> <span class="login"></span></a></div>
+                <div id="login"><a href="<?= $BASE_URL ?>login.php"> <i class="fa-solid fa-circle-user"></i> Login<span class="login"></span></a></div>
             <?php endif; ?>
             <ul id="social-links">
                 <li id="social-link"><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
