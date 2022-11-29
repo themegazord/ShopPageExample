@@ -24,6 +24,7 @@ class UserDAO implements UserInterface {
         $user->setEmail($data["user_email"]);
         $user->setPassword($data["user_password"]);
         $user->setToken($data["user_token"]);
+        $user->setIsAdmin($data["is_admin"]);
 
         return $user;
     }

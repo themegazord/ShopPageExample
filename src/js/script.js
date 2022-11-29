@@ -1,6 +1,7 @@
 const formLogin = document.getElementById("form-login");
 const formRegister = document.getElementById("form-register");
 const logoff = document.getElementById("logoff");
+const admin = document.getElementById("admin");
 
 if(formRegister !== null) {
     formRegister.addEventListener("submit", async (e) => {
@@ -51,4 +52,14 @@ if(logoff !== null) {
         window.location.href = "http://localhost:8080/shop_page/";
     })
 }
+
+if(admin !== null) {
+    admin.addEventListener("click", e => {
+        e.preventDefault();
+
+        window.location.href = "http://localhost:8080/shop_page/admin.php"
+
+    })
+}
+
 

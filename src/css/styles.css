@@ -115,6 +115,11 @@ body {
     justify-content: space-between;
 }
 
+.ul-user-menu li:hover {
+    background: #000000;
+    color: #ffffff;
+}
+
 .ul-user-menu li i {
     color: red;
 }

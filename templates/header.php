@@ -54,6 +54,9 @@ $userData = $userDao->verifyToken(false);
                         <li><span class="login"><?= $userData->getName() ?></span>
                             <ul class="ul-user-menu">
                                 <li id="logoff">Desconectar <i class="fa-solid fa-xmark"></i></li>
+                                <?php if($userData->getIsAdmin() === "S"): ?>
+                                    <li id="admin"> Admin <i class="fa-solid fa-screwdriver-wrench"></i></li>
+                                <?php endif; ?>
                             </ul>
                         </li>
                     </ul>

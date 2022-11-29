@@ -9,6 +9,7 @@ class User
     private $email;
     private $password;
     private $token;
+    private $is_admin;
 
     public function getId()
     {
@@ -68,6 +69,14 @@ class User
     public function setToken($token)
     {
         $this->token = $token;
+    }
+
+    public function getIsAdmin() {
+        return $this->is_admin;
+    }
+
+    public function setIsAdmin($is_admin) {
+        $this->is_admin = $is_admin;
     }
 
     public function generateToken() {
