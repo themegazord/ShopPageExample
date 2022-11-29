@@ -7,9 +7,9 @@ $userDao = new UserDAO($conn, $BASE_URL);
 
 $data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-$type = $data["type"];
-$email = $data["email"];
-$password = $data["password"];
+$type = filter_input(INPUT_POST, "type");
+$email = filter_input(INPUT_POST, "email");
+$password = filter_input(INPUT_POST, "password");
 
 $validateEmail = new Email($email);
 if(!$validateEmail->isValid()) {

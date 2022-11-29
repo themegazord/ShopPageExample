@@ -1,7 +1,13 @@
 <?php
 require_once("config/globals.php");
 require_once("config/database.php");
+require_once("DAO/UserDAO.php");
 
+$token = $_SESSION["token"];
+
+$userDao = new UserDAO($conn, $BASE_URL);
+
+$userData = $userDao->verifyToken(false);
 ?>
 
 <!doctype html>
@@ -41,8 +47,11 @@ require_once("config/database.php");
         </ul>
 
         <div id="navbar-loginarea">
-            <div id="login"><a href="<?= $BASE_URL ?>login.php"> <i class="fa-solid fa-circle-user"></i> <span class="login">Login</span></a>
-            </div>
+            <?php if($userData): ?>
+                <div id="login"><i class="fa-solid fa-circle-user"></i> <span class="login"><?= $userData->getName() ?></span></div>
+            <?php else: ?>
+                <div id="login"><a href="<?= $BASE_URL ?>login.php"> <i class="fa-solid fa-circle-user"></i> <span class="login"></span></a></div>
+            <?php endif; ?>
             <ul id="social-links">
                 <li id="social-link"><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
                 <li id="social-link"><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
