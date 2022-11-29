@@ -1,7 +1,6 @@
 <?php
-
-require_once ("../models/User.php");
-require_once ("../config/database.php");
+require_once(realpath($_SERVER["DOCUMENT_ROOT"]) . "/shop_page/models/User.php");
+require_once (realpath($_SERVER["DOCUMENT_ROOT"]) . "/shop_page/config/database.php");
 
 class UserDAO implements UserInterface {
 
@@ -19,6 +18,7 @@ class UserDAO implements UserInterface {
     {
         $user = new User();
 
+        $user->setId($data["id_users"]);
         $user->setName($data["user_name"]);
         $user->setLastname($data["user_lastname"]);
         $user->setEmail($data["user_email"]);
@@ -53,18 +53,25 @@ class UserDAO implements UserInterface {
     public function update(User $user, $redirect = false)
     {
         $id = $user->getId();
-        $name = $user->getName();
-        $lastname = $user->getLastname();
-        $email = $user->getEmail();
-        $password = $user->getPassword();
-        $token = $user->getToken();
+        $user_name = $user->getName();
+        $user_lastname = $user->getLastname();
+        $user_email = $user->getEmail();
+        $user_password = $user->getPassword();
+        $user_token = $user->getToken();
 
-        $stmt = $this->conn->prepare("UPDATE users SET user_name = :user_name, user_lastname = :user_lastname, user_email = :user_email, user_password = :user_password, user_token = :user_token WHERE id_users = :id_users");
-        $stmt->bindParam(":user_name", $name);
-        $stmt->bindParam(":user_lastname", $lastname);
-        $stmt->bindParam(":user_email", $email);
-        $stmt->bindParam(":user_password", $password);
-        $stmt->bindParam(":user_token", $token);
+        $stmt = $this->conn->prepare("UPDATE users SET 
+                 user_name = :user_name, 
+                 user_lastname = :user_lastname, 
+                 user_email = :user_email, 
+                 user_password = :user_password, 
+                 user_token = :user_token 
+                 WHERE id_users = :id_users");
+
+        $stmt->bindParam(":user_name", $user_name);
+        $stmt->bindParam(":user_lastname", $user_lastname);
+        $stmt->bindParam(":user_email", $user_email);
+        $stmt->bindParam(":user_password", $user_password);
+        $stmt->bindParam(":user_token", $user_token);
         $stmt->bindParam(":id_users", $id);
 
         $stmt->execute();
@@ -72,7 +79,16 @@ class UserDAO implements UserInterface {
 
     public function verifyToken($protected = false)
     {
-        // TODO: Implement verifyToken() method.
+        if(!empty($_SESSION["token"])) {
+            $token = $_SESSION["token"];
+
+            $user = $this->findByToken($token);
+
+            if(empty($user)) {
+                return false;
+            }
+            return $user;
+        }
     }
 
     public function setTokenToSession($token, $redirect = false)
@@ -87,7 +103,20 @@ class UserDAO implements UserInterface {
 
     public function findByToken($token)
     {
-        // TODO: Implement findByToken() method.
+        if(empty($token)) {
+            return false;
+        }
+
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE user_token = :user_token");
+        $stmt->bindParam(":user_token", $token);
+        $stmt->execute();
+
+        if($stmt->rowCount() === 0) {
+            return false;
+        }
+
+        $data = $stmt->fetch();
+        return $this->buildUser($data);
     }
 
     public function changePassword(User $user)
@@ -110,8 +139,7 @@ class UserDAO implements UserInterface {
             return false;
         }
         $data = $stmt->fetch();
-        $user = $this->buildUser($data);
-        return $user;
+        return $this->buildUser($data);
 
     }
 
@@ -128,9 +156,8 @@ class UserDAO implements UserInterface {
         }
 
         $token = $user->generateToken();
-        $this->setTokenToSession($token, false);
-
         $user->setToken($token);
+        $this->setTokenToSession($token, false);
         $this->update($user);
 
         return true;
