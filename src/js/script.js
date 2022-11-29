@@ -1,7 +1,20 @@
+// Tela de login
 const formLogin = document.getElementById("form-login");
+//Tela de registrar
 const formRegister = document.getElementById("form-register");
+// nav
 const logoff = document.getElementById("logoff");
 const admin = document.getElementById("admin");
+// tela administrativa
+const menu_cadpro = document.getElementById("menu-cadpro");
+const menu_listpro = document.getElementById("menu-listpro");
+const menu_listven = document.getElementById("menu-listven");
+const cadpro = document.getElementById("cadpro");
+const listpro = document.getElementById("listpro");
+const listven = document.getElementById("listven");
+const form_cadpro = document.getElementById("form-cadpro");
+
+
 
 if(formRegister !== null) {
     formRegister.addEventListener("submit", async (e) => {
@@ -62,4 +75,29 @@ if(admin !== null) {
     })
 }
 
+if(menu_listven !== null && menu_listpro !== null && menu_cadpro !== null && listven !== null && listpro !== null && cadpro !== null) {
+    menu_listven.addEventListener("click", e => {
+        e.preventDefault();
+
+        listven.classList.remove("hidden");
+        listpro.classList.add("hidden");
+        cadpro.classList.add("hidden");
+    })
+
+    menu_listpro.addEventListener("click", e => {
+        e.preventDefault();
+
+        listpro.classList.remove("hidden");
+        listven.classList.add("hidden");
+        cadpro.classList.add("hidden");
+    })
+
+    menu_cadpro.addEventListener("click", e => {
+        e.preventDefault();
+
+        cadpro.classList.remove("hidden");
+        listpro.classList.add("hidden");
+        listven.classList.add("hidden");
+    })
+}
 
