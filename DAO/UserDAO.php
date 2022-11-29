@@ -110,7 +110,8 @@ class UserDAO implements UserInterface {
             return false;
         }
         $data = $stmt->fetch();
-        return $this->buildUser($data);
+        $user = $this->buildUser($data);
+        return $user;
 
     }
 
@@ -122,7 +123,7 @@ class UserDAO implements UserInterface {
             return false;
         }
         //Verifica se as senhas não batem
-        if(!password_verify($password, $user->getEmail())) {
+        if(!password_verify($password, $user->getPassword())) {
             return false;
         }
 
