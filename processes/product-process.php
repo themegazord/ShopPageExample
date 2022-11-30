@@ -20,8 +20,10 @@ if(empty($type)) {
 
 if($type === "create") {
 
+
+
     $product->setName($data["name"]);
-    $product->setPrice($data["price"]);
+    $product->setPrice($product->setMoneyType($data["price"]));
     $product->setBestSeller($data["best_seller"]);
     $product->setActive($data["active"]);
     $product->setDescription($data["bio"]);

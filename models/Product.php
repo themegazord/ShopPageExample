@@ -91,6 +91,10 @@ class Product {
     public function imageGeneratorName() {
         return bin2hex(random_bytes(60)) . ".jpg";
     }
+
+    public function setMoneyType($value) {
+        return str_replace(",", ".", $value);
+    }
 }
 
 interface ProductDAOInterface {
