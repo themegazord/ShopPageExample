@@ -12,7 +12,7 @@ const menu_listven = document.getElementById("menu-listven");
 const cadpro = document.getElementById("cadpro");
 const listpro = document.getElementById("listpro");
 const listven = document.getElementById("listven");
-const form_cadpro = document.getElementById("form-cadpro");
+const formCadpro = document.getElementById("form-cadpro");
 
 
 
@@ -101,3 +101,32 @@ if(menu_listven !== null && menu_listpro !== null && menu_cadpro !== null && lis
     })
 }
 
+if(formCadpro !== null) {
+    formCadpro.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const active = document.getElementById("active");
+        const best_seller = document.getElementById("best_seller");
+
+        const dataCadpro = new FormData(formCadpro);
+
+        if(active.checked) {
+            dataCadpro.append("active", "N")
+        } else {
+            dataCadpro.append("active", "S")
+        }
+
+        if(best_seller.checked) {
+            dataCadpro.append("best_seller", "S")
+        } else {
+            dataCadpro.append("best_seller", "N")
+        }
+
+        const data = await fetch("processes/product-process.php", {
+            method: "POST",
+            body: dataCadpro,
+        });
+
+        const response = await data.json();
+        console.log(response);
+    })
+}

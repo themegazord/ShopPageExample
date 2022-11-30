@@ -659,23 +659,58 @@ footer span {
     gap: 30px;
 }
 
-.best-seller {
+.best-seller-status {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.best-seller,
+.status {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 10px;
 }
 
-.best-seller input {
+.best-seller input,
+.status input{
     height: 15px;
     width: 15px;
 }
 
 
+.btn-cadpro {
+    font-family: Alexandria, sans-serif;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 22px;
+    height: 50px;
+    padding: 10px 30px;
+    background-color: #000000;
+    transition: .5s;
+    cursor: pointer;
+    border: none;
+    border-radius: 100px;
+}
 
+.btn-cadpro:hover{
+    background: #1b61ff;
+}
 
+.form-container.stock,
+.form-container.price {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
 
-
+.form-container.stock input,
+.form-container.price input{
+    width: 100px;
+}
 
 
 

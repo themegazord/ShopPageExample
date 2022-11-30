@@ -33,11 +33,11 @@
                         <div class="left-side">
                             <div class="form-container">
                                 <label for="name" class="label-product-name">Nome do Produto:</label>
-                                <input name="name" id="name" type="text" class="input-product-name">
+                                <input name="name" id="name" type="text" class="input-product-name" required>
                             </div>
-                            <div class="form-container">
+                            <div class="form-container price">
                                 <label for="price" class="label-product-price">Preço do Produto:</label>
-                                <input name="price" id="price" type="number" class="input-product-price">
+                                <input name="price" id="price" type="number" class="input-product-price" required step=".01" min="0">
                             </div>
                             <div class="form-container">
                                 <label for="img" class="label-product-img">Imagem do Produto:</label>
@@ -50,15 +50,21 @@
                             <button type="submit" class="btn-cadpro">Cadastrar</button>
                         </div>
                         <div class="right-side">
-                            <div class="form-container best-seller">
-                                <input type="checkbox" name="best-seller" id="best-seller" value="S">
-                                <label for="best-seller" class="label-product-best-seller">Mais vendido? </label>
+                            <div class="form-container best-seller-status">
+                                <div class="best-seller">
+                                    <input type="checkbox" name="best-seller" id="best_seller">
+                                    <label for="best_seller" class="label-product-best-seller">Mais vendido? </label>
+                                </div>
+                                <div class="status">
+                                    <input type="checkbox" name="status" id="active">
+                                    <label for="active" class="label-product-active" >Inativo? </label>
+                                </div>
                             </div>
                             <div class="form-container">
                                 <label for="bio" class="label-product-bio">Descrição do Produto:</label>
                                 <textarea name="bio" id="bio" cols="40" rows="5" class="input-product-bio"></textarea>
                             </div>
-                            <div class="form-container">
+                            <div class="form-container stock">
                                 <label for="stock" class="label-product-stock">Estoque do Produto:</label>
                                 <input name="stock" id="stock" type="number" class="input-product-stock">
                             </div>
