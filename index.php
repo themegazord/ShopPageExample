@@ -2,7 +2,7 @@
 require_once("DAO/ProductDAO.php");
 $productDao = new ProductDAO($conn, $BASE_URL);
 
-$allProducts = $productDao->getAllProduct();
+$allProducts = $productDao->getAllProduct("DESC");
 
 ?>
     <div id="main-container">

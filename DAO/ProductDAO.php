@@ -122,11 +122,11 @@ class ProductDAO implements ProductDAOInterface {
         return $_SESSION["id_product"];
     }
 
-    public function getAllProduct()
+    public function getAllProduct($order): array
     {
         $products = [];
 
-        $stmt = $this->conn->query("SELECT * FROM products ORDER BY id_product DESC");
+        $stmt = $this->conn->query("SELECT * FROM products ORDER BY id_product " . "$order");
 
         $stmt->execute();
 

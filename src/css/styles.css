@@ -171,6 +171,7 @@ body {
     transition-property: padding-bottom, padding-top;
     transition: .3s;
     height: 0;
+    font-family: Alexandria, sans-serif;
 }
 
 #print:hover > button {
@@ -750,7 +751,62 @@ footer span {
     width: 100px;
 }
 
+/* Administrativo - Listagem de Produtos */
 
+#listpro {
+    width: 100%;
+    height: 100%;
+}
+
+#listpro-content {
+    width: 100%;
+    height: 100%;
+    background: #999999;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+}
+
+#listpro-content .title-admin {
+    position: absolute;
+    top: 50px;
+}
+
+#listpro-table {
+    position: absolute;
+    top: 170px;
+    width: 80%;
+}
+
+#listpro-table .actions,
+#listpro-table .line-product{
+    text-align: center;
+}
+
+.btn-listpro-edit {
+    border: none;
+    background: #ffffff;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Alexandria, sans-serif;
+    font-weight: 700;
+    transition: .5s;
+}
+
+.btn-listpro-edit:hover {
+    background: #1b61ff;
+    color: #ffffff;
+}
+
+table, th, td {
+    border: 1px solid #000000;
+    border-collapse: collapse;
+    padding: 5px 2px;
+}
 
 
 

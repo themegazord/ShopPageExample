@@ -1,5 +1,8 @@
 <?php
     require_once ("templates/header.php");
+    require_once ("DAO/ProductDAO.php");
+
+    $productDao = new ProductDAO($conn, $BASE_URL);
 
     $userDao = new UserDAO($conn, $BASE_URL);
 
@@ -11,6 +14,8 @@
     if($user->getIsAdmin() !== "S") {
         header("Location:" . $BASE_URL); // Manda para a ultima url acessada
     }
+
+    $allProducts = $productDao->getAllProduct("ASC");
 ?>
 
 
@@ -73,7 +78,25 @@
                 </div>
             </div>
             <div id="listpro" class="hidden">
-                <h1 class="title-admin">Listagem dos produtos</h1>
+                <div id="listpro-content">
+                    <h1 class="title-admin">Listagem dos produtos</h1>
+                    <?php if (count($allProducts) > 0): ?>
+                        <table id="listpro-table">
+                            <tr>
+                                <th>#</th>
+                                <th>Nome</th>
+                                <th>Preço</th>
+                                <th>Estoque</th>
+                                <th>Editar</th>
+                            </tr>
+                            <?php foreach ($allProducts as $product): ?>
+                                <?php require("templates/line-product.php"); ?>
+                            <?php endforeach; ?>
+                        </table>
+                    <?php else: ?>
+                        <p>Não existem produtos cadastrados.</p>
+                    <?php endif; ?>
+                </div>
             </div>
             <div id="listven" class="hidden">
                 <h1 class="title-admin">Listagem das vendas</h1>
