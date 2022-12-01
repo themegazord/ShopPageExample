@@ -13,6 +13,9 @@ const cadpro = document.getElementById("cadpro");
 const listpro = document.getElementById("listpro");
 const listven = document.getElementById("listven");
 const formCadpro = document.getElementById("form-cadpro");
+// index
+const print = document.getElementById("product-print");
+const img = document.getElementById("product-img");
 
 
 
@@ -128,5 +131,20 @@ if(formCadpro !== null) {
 
         const response = await data.json();
         console.log(response);
+    })
+}
+
+if(img !== null) {
+    img.addEventListener("mouseover", e => {
+        img.classList.add("hidden");
+        print.classList.remove("hidden");
+
+    })
+}
+
+if(print !== null) {
+    print.addEventListener("mouseout", e => {
+        print.classList.add("hidden");
+        img.classList.remove("hidden");
     })
 }

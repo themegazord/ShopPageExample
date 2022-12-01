@@ -1,20 +1,24 @@
-<?php require_once("templates/header.php");?>
+<?php require_once("templates/header.php");
+require_once ("DAO/ProductDAO.php");
+$productDao = new ProductDAO($conn, $BASE_URL);
+
+$allProducts = $productDao->getAllProduct();
+
+?>
 <div id="main-container">
+    <?php if(count($allProducts) > 0): ?>
     <ul id="products-list">
         <li class="product">
-            <div class="data-product">
-                <div class="product-img-container">
-                    <img src="#" alt="" class="product-img ">
-                    <img src="#" alt="" class="product-print hidden">
-                </div>
-                <div class="product-info">
-                    <span class="product-name">Nome do Produto</span>
-                    <div class="separator"></div>
-                    <span class="product-price">R$ 25,00</span>
-                </div>
-            </div>
+            <?php foreach($allProducts as $product): ?>
+                <?php if($product->getActive() !== "N"): ?>
+                    <?php require("templates/card-product.php") ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
         </li>
     </ul>
+    <?php else: ?>
+
+    <?php endif; ?>
 </div>
 <div class="separator-main"></div>
 <div class="others-informations-main">

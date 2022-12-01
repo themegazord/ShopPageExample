@@ -102,5 +102,6 @@ interface ProductDAOInterface {
     public function create(Product $product);
     public function update(Product $product);
     public function contains_stock($id);
+    public function getAllProduct();
     public function getIdToken();
 }
