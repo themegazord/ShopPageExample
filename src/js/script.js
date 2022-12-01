@@ -14,8 +14,8 @@ const listpro = document.getElementById("listpro");
 const listven = document.getElementById("listven");
 const formCadpro = document.getElementById("form-cadpro");
 // index
-const print = document.getElementById("product-print");
-const img = document.getElementById("product-img");
+const elsprint = document.getElementsByClassName("product-print");
+const elsimg = document.getElementsByClassName("product-img");
 
 
 
@@ -134,17 +134,20 @@ if(formCadpro !== null) {
     })
 }
 
-if(img !== null) {
-    img.addEventListener("mouseover", e => {
-        img.classList.add("hidden");
-        print.classList.remove("hidden");
-
+if(elsimg !== null) {
+    Array.prototype.forEach.call(elsimg, e => {
+        e.addEventListener("mouseover", function() {
+            e.classList.add("hidden")
+            e.parentElement.children[0].children[0].classList.remove("hidden")
+        })
     })
 }
 
-if(print !== null) {
-    print.addEventListener("mouseout", e => {
-        print.classList.add("hidden");
-        img.classList.remove("hidden");
+if(elsprint !== null) {
+    Array.prototype.forEach.call(elsprint, e => {
+        e.addEventListener("mouseout", function() {
+            e.classList.add("hidden")
+            e.parentElement.parentElement.children[1].classList.remove("hidden")
+        })
     })
 }

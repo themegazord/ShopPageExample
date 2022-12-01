@@ -15,10 +15,10 @@ if(empty($product->getPrint())) {
 <div class="data-product">
     <div class="product-img-container">
         <div id="print">
-            <img src="<?= $BASE_URL ?>src/img/products/<?= $product->getPrint() ?>" alt="estampa do produto" id="product-print" class="hidden">
+            <img src="<?= $BASE_URL ?>src/img/products/<?= $product->getPrint() ?>" alt="estampa do produto" class="product-print hidden">
             <button id="quick-view" class="">Visualização rápida</button>
         </div>
-            <img src="<?= $BASE_URL ?>src/img/products/<?= $product->getImage() ?>" alt="imagem do produto" id="product-img">
+            <img src="<?= $BASE_URL ?>src/img/products/<?= $product->getImage() ?>" alt="imagem do produto" class="product-img">
     </div>
     <div class="product-info">
         <span class="product-name"><?= $product->getName() ?></span>
